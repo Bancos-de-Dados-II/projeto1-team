@@ -1,6 +1,11 @@
-import { Request, Response } from 'express';
-import prisma from '../../prisma/client';
+import prisma from "../../prisma/client";
+import { Institution } from "../../@types/instituicao";
 
-export const createInstituicao = async () => {
-
+export async function createInstitution(data: Institution): Promise<void> {
+  const { name, cnpj, contact, description, positionX, positionY } = data;
+  await prisma.$executeRaw<Institution[]>`
+        INSERT INTO "Institution" ("name", "cnpj", "contact", "description", "localization")
+        VALUES (${name}, ${cnpj}, ${contact}, ${description}, 
+        ST_SetSRID(ST_MakePoint(${positionX}, ${positionY}), 4326))
+    `;
 }
