@@ -3,6 +3,7 @@ import institutionRouter from "./routes/institution.router";
 
 const app = express();
 app.use(express.json());
+
 app.use("/institutions", institutionRouter);
 
 const PORT = 3000;

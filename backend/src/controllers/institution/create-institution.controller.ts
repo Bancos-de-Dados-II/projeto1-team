@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import { createInstitutionService } from "../../services/instituicao/create-institution.service";
 
-export const createInstitutionController = async (
-  req: Request,
-  res: Response
-) => {
+export const createInstitutionController = async ( req: Request, res: Response ) => {
   try {
     const { name, cnpj, contact, description, positionX, positionY } = req.body;
     if (
