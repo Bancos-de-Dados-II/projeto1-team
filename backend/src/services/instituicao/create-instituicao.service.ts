@@ -1,7 +1,7 @@
 import prisma from "../../prisma/client";
 import { Institution } from "../../@types/instituicao";
 
-export async function createInstitution(data: Institution): Promise<void> {
+export async function createInstitutionService(data: Institution): Promise<void> {
   const { name, cnpj, contact, description, positionX, positionY } = data;
   await prisma.$executeRaw<Institution[]>`
         INSERT INTO "Institution" ("name", "cnpj", "contact", "description", "localization")
