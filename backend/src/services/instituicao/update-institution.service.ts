@@ -1,9 +1,9 @@
 import prisma from "../../prisma/client";
 import { Institution } from "../../@types/instituicao";
 
-export async function updateInstitutionService(id: number, data: Institution): Promise<void> {
-    const { name, cnpj, contact, description, positionX, positionY } = data;
-    await prisma.$executeRaw<Institution[]>`
+export async function updateInstitutionService( id: number, data: Institution ): Promise<void> {
+  const { name, cnpj, contact, description, positionX, positionY } = data;
+  await prisma.$executeRaw<Institution[]>`
         UPDATE "Instituicao"
         SET "name" = ${name}, 
             "cnpj" = ${cnpj}, 
