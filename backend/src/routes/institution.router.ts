@@ -5,13 +5,14 @@ import { getInstitutionController } from "../controllers/institution/get-institu
 import { updateInstitutionController } from "../controllers/institution/update-institution.controller";
 import { updateLocalizationInstitutionController } from "../controllers/institution/update-localization-institution.controller";
 import { validateCnpj } from "../middlewares/institution/validate-cnpj";
+import { validateId } from "../middlewares/institution/validateId";
 
 const router = Router();
 
 router.post("/", validateCnpj,createInstitutionController);
-router.delete("/:id", deleteInstitutionController);
+router.delete("/:id", validateId, deleteInstitutionController);
 router.get("/", getInstitutionController);
-router.put("/:id", validateCnpj, updateInstitutionController)
-router.patch("/:id", validateCnpj, updateLocalizationInstitutionController);
+router.put("/:id", validateId, validateCnpj, updateInstitutionController)
+router.patch("/:id", validateId, updateLocalizationInstitutionController);
 
 export default router;
