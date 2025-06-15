@@ -7,7 +7,8 @@ export async function getInstitutionService(): Promise<Institution[] | null> {
         "name",
         "cnpj",
         "contact",
-        "description"
+        "description",
+        ST_AsGeoJSON("localization") AS localization
     FROM "Instituicao"
     `;
   return list.length > 0 ? list : null;
