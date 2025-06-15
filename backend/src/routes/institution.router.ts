@@ -11,7 +11,7 @@ const router = Router();
 router.post("/", validateCnpj,createInstitutionController);
 router.delete("/:id", deleteInstitutionController);
 router.get("/", getInstitutionController);
-router.put("/:id", updateInstitutionController)
-router.patch("/:id", updateLocalizationInstitutionController);
+router.put("/:id", validateCnpj, updateInstitutionController)
+router.patch("/:id", validateCnpj, updateLocalizationInstitutionController);
 
 export default router;
