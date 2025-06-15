@@ -10,7 +10,7 @@ CREATE TABLE "Instituicao" (
     "description" TEXT NOT NULL,
     "localization" geography(Point, 4326) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Instituicao_pkey" PRIMARY KEY ("id")
 );
