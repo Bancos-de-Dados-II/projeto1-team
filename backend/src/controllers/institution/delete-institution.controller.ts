@@ -4,13 +4,6 @@ import { deleteInstitutionService } from "../../services/instituicao/delete-inst
 export const deleteInstitutionController = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        if(!id || isNaN(Number(id))) {
-            console.error("ID inválido:", id);
-            res.status(400).json({ error: "Informe o Id da instituição desejada" });
-            return;
-        }
-        console.log("ID recebido:", id);
-
         await deleteInstitutionService(Number(id));
         res.status(200).json({ message: "Instituição deletada com sucesso!" });
         return;
