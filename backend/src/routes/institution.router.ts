@@ -4,10 +4,11 @@ import { deleteInstitutionController } from "../controllers/institution/delete-i
 import { getInstitutionController } from "../controllers/institution/get-institution.controller";
 import { updateInstitutionController } from "../controllers/institution/update-institution.controller";
 import { updateLocalizationInstitutionController } from "../controllers/institution/update-localization-institution.controller";
+import { validateCnpj } from "../middlewares/institution/validate-cnpj";
 
 const router = Router();
 
-router.post("/", createInstitutionController);
+router.post("/", validateCnpj,createInstitutionController);
 router.delete("/:id", deleteInstitutionController);
 router.get("/", getInstitutionController);
 router.put("/:id", updateInstitutionController)
