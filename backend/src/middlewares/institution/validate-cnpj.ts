@@ -4,11 +4,7 @@ import prisma from "../../prisma/client";
 export const validateCnpj = async (req: Request, res: Response, next: NextFunction ) => {
   try {
     const { cnpj } = req.body;
-    if (!cnpj) {
-      res.status(400).json({ error: "CNPJ não informado" });
-      return;
-    }
-
+    
     const institution = await prisma.instituicao.findFirst({
       where: { cnpj },
     });

@@ -14,7 +14,7 @@ router.post("/", validateCnpj,createInstitutionController);
 router.delete("/:id", validateId, deleteInstitutionController);
 router.get("/", getInstitutionController);
 router.get("/:id", validateId, getIdInstitutionController);
-router.put("/:id", validateId, validateCnpj, updateInstitutionController)
+router.put("/:id", validateId, updateInstitutionController)
 router.patch("/:id", validateId, updateLocalizationInstitutionController);
 
 export default router;

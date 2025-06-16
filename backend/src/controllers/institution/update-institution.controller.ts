@@ -12,7 +12,6 @@ export const updateInstitutionController = async (
     if (
       !id ||
       !name ||
-      !cnpj ||
       !contact ||
       !description ||
       !positionX ||
@@ -23,7 +22,6 @@ export const updateInstitutionController = async (
     }
     await updateInstitutionService(Number(id), {
       name,
-      cnpj,
       contact,
       description,
       positionX,
