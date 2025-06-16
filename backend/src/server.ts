@@ -1,7 +1,10 @@
 import express from "express";
+import cors from "cors";
 import institutionRouter from "./routes/institution.router";
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 app.use("/institutions", institutionRouter);
