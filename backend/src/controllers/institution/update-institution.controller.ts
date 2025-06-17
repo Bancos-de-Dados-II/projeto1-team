@@ -22,6 +22,7 @@ export const updateInstitutionController = async (
     }
     await updateInstitutionService(Number(id), {
       name,
+      cnpj: cnpj || undefined, // CNPJ is optional
       contact,
       description,
       positionX,

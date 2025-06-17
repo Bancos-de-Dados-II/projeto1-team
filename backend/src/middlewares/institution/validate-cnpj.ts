@@ -13,7 +13,7 @@ export const validateCnpj = async (req: Request, res: Response, next: NextFuncti
       res.status(400).json({ error: "CNPJ já cadastrado" });
       return;
     }
-
+    
     next();
   } catch (error) {
     console.error("Erro ao validar cnpj da instituição:", error);

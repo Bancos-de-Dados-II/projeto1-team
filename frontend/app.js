@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openForm(mode = "create", institution = null) {
     institutionForm.reset();
+    const cnpjFieldDiv = document.getElementById("cnpj").parentElement;
     if (mode === "edit" && institution) {
       editState = {
         isEditing: true,
@@ -131,7 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("submit-btn").textContent = "Atualizar";
       document.getElementById("institutionId").value = institution.id;
       document.getElementById("name").value = institution.name;
-      document.getElementById("cnpj").value = institution.cnpj;
+      // Esconde o campo de CNPJ ao editar
+      cnpjFieldDiv.style.display = "none";
       document.getElementById("contact").value = institution.contact;
       document.getElementById("description").value = institution.description;
       const [lng, lat] = institution.localization.coordinates;
@@ -141,6 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
       editState = { isEditing: false, id: null, originalCnpj: null };
       document.getElementById("form-title").textContent = "Nova Instituição";
       document.getElementById("submit-btn").textContent = "Salvar";
+      // Mostra o campo de CNPJ ao criar
+      cnpjFieldDiv.style.display = "";
     }
     formModal.classList.remove("hidden");
   }
@@ -184,15 +188,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const payload = {
       name: data.name,
-      cnpj: data.cnpj,
       contact: data.contact,
       description: data.description,
       positionX: parseFloat(data.positionX),
       positionY: parseFloat(data.positionY),
     };
 
-    if (editState.isEditing && payload.cnpj === editState.originalCnpj) {
-      delete payload.cnpj;
+    // Só adiciona o CNPJ se for criação
+    if (!editState.isEditing) {
+      payload.cnpj = data.cnpj;
     }
 
     const url = editState.isEditing ? `${API_URL}/${editState.id}` : API_URL;
